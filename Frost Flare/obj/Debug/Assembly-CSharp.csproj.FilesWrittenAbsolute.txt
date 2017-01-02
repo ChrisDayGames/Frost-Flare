@@ -1,0 +1,17 @@
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/UnityEngine.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/UnityEditor.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/UnityEngine.PlaymodeTestsRunner.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/UnityEngine.Analytics.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/UnityEngine.HoloLens.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/UnityEngine.VR.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/Mono.Cecil.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/Unity.DataContract.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/socratessotos/Desktop/Organization/Unity_Projects/Frost Flare/Temp/bin/Debug/Mono.Cecil.Mdb.dll
