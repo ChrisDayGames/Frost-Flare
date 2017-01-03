@@ -22,6 +22,10 @@ public class ScrollRectSnap : MonoBehaviour {
 	private int buttonDistance;			//Will hold the distance between the buttons
 	private int minButtonIndex;			//Index of the button with the smallest distance
 
+	void OnEnable () {
+		HideReadyPanel ();
+	}
+
 	void Start () {
 		
 		//initialize the distances array
@@ -106,14 +110,14 @@ public class ScrollRectSnap : MonoBehaviour {
 	public void ShowReadyPanel () {
 
 		readyPanel.gameObject.SetActive (true);
-		GameController.instance.playersAreReady [playerNumber] = true;
+		GameController.instance.menuNav.playersAreReady [playerNumber] = true;
 
 	}
 
 	public void HideReadyPanel () {
 		
 		readyPanel.gameObject.SetActive (false);
-		GameController.instance.playersAreReady [playerNumber] = false;
+		GameController.instance.menuNav.playersAreReady [playerNumber] = false;
 
 	}
 

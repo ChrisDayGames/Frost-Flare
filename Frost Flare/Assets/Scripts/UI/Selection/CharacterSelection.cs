@@ -8,8 +8,8 @@ public class CharacterSelection : MonoBehaviour {
 	//are named in the resources folder
 	public const string FIRE = "Fire";
 	public const string ICE = "Ice";
-	public const string LIGHTNING = "Lightning";
 	public const string EARTH = "Earth";
+	public const string LIGHTNING = "Lightning";
 	public const string GOLD = "Gold";
 
 
@@ -27,9 +27,9 @@ public class CharacterSelection : MonoBehaviour {
 		case 1:
 			return ICE;
 		case 2:
-			return LIGHTNING;
-		case 3:
 			return EARTH;
+		case 3:
+			return LIGHTNING;
 		case 4:
 			return GOLD;
 

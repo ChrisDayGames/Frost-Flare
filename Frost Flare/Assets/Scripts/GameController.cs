@@ -18,9 +18,6 @@ public class GameController : MonoBehaviour {
 	public ScoreManager score;
 	public CharacterSelection characterSelection;
 
-	//boolean array for managing the starting of games
-	public bool[] playersAreReady;
-
 	void Awake () {
 
 		if (instance == null)
@@ -31,13 +28,16 @@ public class GameController : MonoBehaviour {
 	public void StartGame () {
 
 		//Do not start the game if the players are not ready
-		for (int i = 0; i < playersAreReady.Length; i++) {
-			if (!playersAreReady[i])
+		for (int i = 0; i < menuNav.playersAreReady.Length; i++) {
+			if (!menuNav.playersAreReady[i])
 				return;
 		}
 
 		characterSelection.LoadPlayerChoices();
-		RestartGame ();
+
+		//Adding this so that we can do a little
+		//Animation before starting the game
+		Invoke ("RestartGame", 1f);
 
 	}
 

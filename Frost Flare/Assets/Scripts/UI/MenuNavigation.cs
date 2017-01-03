@@ -7,6 +7,9 @@ public class MenuNavigation : MonoBehaviour {
 	public GameObject[] menuScreens;
 	public GameObject[] popUpScreens;
 
+	//boolean array for managing the starting of games
+	public bool[] playersAreReady;
+
 	public void CloseAll (GameObject[] arrayToClose) {
 
 		for (int i = 0; i < arrayToClose.Length; i++) {
@@ -23,10 +26,12 @@ public class MenuNavigation : MonoBehaviour {
 
 	public void GoToScreen (string screenName) {
 
+		PlayersAreNotReady ();
 		OpenMenu ();
 
 		GameController.state = GameController.MENU;
 
+		CloseAll (popUpScreens);
 		CloseAll (menuScreens);
 
 		for (int i = 0; i < menuScreens.Length; i++) {
@@ -75,6 +80,15 @@ public class MenuNavigation : MonoBehaviour {
 	public void QuitGame () {
 
 		Application.Quit ();
+
+	}
+
+
+	public void PlayersAreNotReady () {
+
+		for (int i = 0; i < playersAreReady.Length; i++) {
+			playersAreReady[i] = false;
+		}
 
 	}
 
