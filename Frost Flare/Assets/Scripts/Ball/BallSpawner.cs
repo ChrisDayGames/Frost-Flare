@@ -11,12 +11,6 @@ public class BallSpawner : MonoBehaviour {
 	//an int for changing currently selected character
 	public int playerNumber;
 
-	//The ball prefab that this will spawn
-	public Ball ballPrefab;
-
-	//The ball prefab that this will spawn
-	public GameObject ballPreviewPrefab;
-
     //The emblem on top of each button
     public Image buttonEmblem;
 
@@ -36,7 +30,7 @@ public class BallSpawner : MonoBehaviour {
 	//The amount of time the player has been holding the button
 	private float holdTime = 0.0f;
 	//the gameobject that will show the preview of the ball
-	private GameObject spawnPreview;
+	private Rotator spawnPreview;
 
 	// Use this for initialization
 	void Awake () {
@@ -45,7 +39,7 @@ public class BallSpawner : MonoBehaviour {
 		CalculateSpawnPosition ();
 
 		//create the spawn preview
-		CreateSpawnPreview ();
+		//CreateSpawnPreview ();
 
 	}
 	
@@ -109,7 +103,8 @@ public class BallSpawner : MonoBehaviour {
 	}
 
 	void CreateSpawnPreview () {
-		spawnPreview = Instantiate <GameObject> (ballPreviewPrefab, spawnPosition, Quaternion.identity);
+		spawnPreview = Instantiate <Rotator> (Resources.Load <Rotator> (type + "Preview"));
+		spawnPreview.transform.position = spawnPosition;
 	}
 
 	//Initiate the spawning process
@@ -130,8 +125,8 @@ public class BallSpawner : MonoBehaviour {
 
 		//check if the ball should be displayed
 		if (ShouldDisplaySpawnPreview ((size/2)*1.05f)) {
-			spawnPreview.SetActive (true);
-
+			spawnPreview.gameObject.SetActive (true);
+			spawnPreview.rotationSpeed = GetSpawnPreviewRotation () * directionModifier;
 
 			//uncomment this code to automatically start spawning the ball while holdingin
 			//without having to press the button again
@@ -141,8 +136,18 @@ public class BallSpawner : MonoBehaviour {
 //			}
 
 		} else {
-			spawnPreview.SetActive (false);
+			spawnPreview.gameObject.SetActive (false);
 			ResetSpawn ();
+		}
+
+	}
+
+	public float GetSpawnPreviewRotation () {
+
+		if (isPressed) {
+			return Ball.CalculateRotationByPercent (holdTime/MAX_HOLD_TIME);
+		} else {
+			return Ball.MIN_SPAWN_ROTATION;
 		}
 
 	}
@@ -192,6 +197,9 @@ public class BallSpawner : MonoBehaviour {
 		//modify the speed
 		b.SetSpeed (holdTime/MAX_HOLD_TIME);
 
+		//set the initialrotation of the new ball
+		b.rotator.transform.rotation = spawnPreview.transform.rotation;
+
 		//set the ball to be on this spawner's layer mask
 		//i do not know how this works but something something
 		//layer masks are complicated for some reason haha
@@ -201,8 +209,10 @@ public class BallSpawner : MonoBehaviour {
 
 	public void LoadNewBall () {
 
-		Destroy (spawnPreview);
-		spawnPreview = Instantiate<GameObject> (Resources.Load <GameObject> (type + "Preview"), spawnPosition, Quaternion.identity);
+		if (spawnPreview)
+			Destroy (spawnPreview.gameObject);
+		
+		CreateSpawnPreview ();
 
 		GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Buttons/" + type + " Button");
 

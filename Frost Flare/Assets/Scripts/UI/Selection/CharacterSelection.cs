@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour {
 
@@ -17,6 +18,11 @@ public class CharacterSelection : MonoBehaviour {
 		FIRE,
 		ICE
 	};
+
+	public Color[] ballColors;
+
+	public SpriteRenderer[] coloredImagesPlayer1;
+	public SpriteRenderer[] coloredImagesPlayer2;
 
 	public static string ConvertIntToPlayerType (int selection) {
 
@@ -40,10 +46,33 @@ public class CharacterSelection : MonoBehaviour {
 
 	}
 
+	public Color ConvertStringToPlayerColors (string selection) {
+		switch (selection) {
+
+		case FIRE:
+			return ballColors [0];
+		case ICE:
+			return ballColors [1];
+		case EARTH:
+			return ballColors [2];
+		case LIGHTNING:
+			return ballColors [3];
+		case GOLD:
+			return ballColors [4];
+
+			default:
+			return ballColors [0];
+
+		}
+	}
+
 	public void LoadPlayerChoices () {
 
 		//set a new type for the all the ball spawners
 		GameObject[] spawners = GameObject.FindGameObjectsWithTag ("Spawner");
+
+		Color player1Color = new Color ();
+		Color player2Color = new Color ();
 
 		for (int i = 0; i < spawners.Length; i++) {
 			
@@ -54,6 +83,28 @@ public class CharacterSelection : MonoBehaviour {
 			spawner.choice = playerChoices[spawner.playerNumber];
 			spawner.LoadNewBall ();
 
+			if (i == 0) {
+
+				player1Color = ConvertStringToPlayerColors (spawner.choice);
+				
+			}
+
+			if (i == spawners.Length - 1) {
+
+				player2Color = ConvertStringToPlayerColors (spawner.choice);
+
+			}
+
+		}
+
+		for (int j = 0; j < coloredImagesPlayer1.Length; j++) {
+
+			coloredImagesPlayer1[j].color = player1Color;
+		}
+
+		for (int j = 0; j < coloredImagesPlayer2.Length; j++) {
+
+			coloredImagesPlayer2[j].color = player2Color;
 		}
 
 	}

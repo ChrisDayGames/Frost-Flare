@@ -24,6 +24,17 @@ public class Ball : MonoBehaviour {
 	//This is mainly to stop ball speed from going to zero
 	public const float ABSOLUTE_MIN_SPEED = 0.5f;
 
+	//The slowest speed a ball can be spawned
+	public const float MIN_SPAWN_ROTATION = 100.0f;
+	//The fastest speed a ball can be spawned
+	public const float MAX_SPAWN_ROTATION = 250.0f;
+	//The absolute slowest a ball can be ever, ever
+	//This is mainly to stop ball speed from going to zero
+	public const float ABSOLUTE_MIN_ROTATION = 50.0f;
+
+	//A reference to the rotator on the ball
+	public Rotator rotator;
+
 	//this will be a percentage that will ultimately control the size of the ball
 	//and determine whether or not it should be destroyed
 	[HideInInspector]
@@ -110,7 +121,22 @@ public class Ball : MonoBehaviour {
 			size = ABSOLUTE_MAX_SIZE;
 
 		return size;
-		
+
+	}
+
+	//this function will also be used for determining the preview size
+	public static float CalculateRotationByPercent (float percent) {
+
+		//determine the rotation speed based on the percentage of max hold time
+		//that the player held the button
+		float newSpeed = MAX_SPAWN_ROTATION;
+		newSpeed -= (MAX_SPAWN_ROTATION - MIN_SPAWN_ROTATION) * percent;
+
+		if (newSpeed < ABSOLUTE_MIN_ROTATION)
+			newSpeed = ABSOLUTE_MIN_ROTATION;
+
+		//Set the correct speed 
+		return newSpeed;
 	}
 
 	public void SetSpeed (float percent) {
@@ -125,6 +151,7 @@ public class Ball : MonoBehaviour {
 
 		//Set the correct speed 
 		speed = newSpeed * directionModifier;
+		rotator.rotationSpeed = CalculateRotationByPercent (percent) * directionModifier;
 		
 	}
 
