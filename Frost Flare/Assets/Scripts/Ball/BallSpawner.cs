@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class BallSpawner : MonoBehaviour {
 
@@ -199,6 +200,8 @@ public class BallSpawner : MonoBehaviour {
 
 		Destroy (spawnPreview);
 		spawnPreview = Instantiate<GameObject> (Resources.Load <GameObject> (type + "Preview"), spawnPosition, Quaternion.identity);
+
+		GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Buttons/" + type + " Button");
 
 		//Continue in this fashion for the images on the buttons
 

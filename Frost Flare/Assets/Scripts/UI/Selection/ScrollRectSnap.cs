@@ -66,9 +66,13 @@ public class ScrollRectSnap : MonoBehaviour {
 		for (int i = 0; i < containedButtons.Length; i++) {
 
 			if (i == minButtonIndex) {
-				containedButtons[i].sizeDelta = new Vector2 (150, 150);
+				containedButtons[i].transform.GetChild(0).localScale = Vector3.one * 150f;
+				containedButtons[i].transform.GetChild(0).GetChild(0).gameObject.SetActive (true);
+				containedButtons[i].transform.GetChild(0).GetChild(1).localScale = Vector3.one * 1f;
 			} else {
-				containedButtons[i].sizeDelta = new Vector2 (100, 100);
+				containedButtons[i].transform.GetChild(0).localScale = Vector3.one * 50f;
+				containedButtons[i].transform.GetChild(0).GetChild(0).gameObject.SetActive (false);
+				containedButtons[i].transform.GetChild(0).GetChild(1).localScale = Vector3.one * 0.7f;
 			}
 
 		}
