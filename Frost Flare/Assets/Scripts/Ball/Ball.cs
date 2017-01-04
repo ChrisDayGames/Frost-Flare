@@ -216,10 +216,18 @@ public class Ball : MonoBehaviour {
 			GameController.instance.score.IncreaseP2Score ();
 
 		//Do all the rest of the win game logic
-		CameraShake2D.instance.ShakeCamera (0.3f, 1f, 1f);
+		CameraShake2D.instance.ShakeCamera (0.3f, 2f, 1f);
 		GameController.instance.EndGame ();
 		Destroy (gameObject);
 	}
+
+    void MediumScreenShake() {
+        CameraShake2D.instance.ShakeCamera(0.5f, 0.1f, 1f);
+    }
+
+    void BigScreenShake() {
+        CameraShake2D.instance.ShakeCamera(0.5f, 0.3f, 1f);
+    }
 
 	public void OnTriggerEnter (Collider other) {
 
@@ -249,6 +257,9 @@ public class Ball : MonoBehaviour {
 			DestroyAllBallsExceptThis ();
 			GameController.state = GameController.OVER;
 			Invoke ("WinGame", 1);
+
+            MediumScreenShake();
+            Invoke("BigScreenShake", 0.5f);
 			
 		}
 			

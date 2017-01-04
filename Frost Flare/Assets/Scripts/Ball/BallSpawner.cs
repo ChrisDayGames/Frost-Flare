@@ -17,6 +17,9 @@ public class BallSpawner : MonoBehaviour {
 	//The ball prefab that this will spawn
 	public GameObject ballPreviewPrefab;
 
+    //The emblem on top of each button
+    public Image buttonEmblem;
+
 	public string choice {get {return type;} set {type = value;}}
 
 	//The position at which this button will spawn objects
@@ -202,6 +205,8 @@ public class BallSpawner : MonoBehaviour {
 		spawnPreview = Instantiate<GameObject> (Resources.Load <GameObject> (type + "Preview"), spawnPosition, Quaternion.identity);
 
 		GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Buttons/" + type + " Button");
+
+        buttonEmblem.sprite = Resources.Load <Sprite> ("Buttons/Emblems/" + type + " Emblem");
 
 		//Continue in this fashion for the images on the buttons
 
