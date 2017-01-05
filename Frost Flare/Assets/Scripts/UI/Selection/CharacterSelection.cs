@@ -68,6 +68,8 @@ public class CharacterSelection : MonoBehaviour {
 
 	public void LoadPlayerChoices () {
 
+		GameController.instance.ShowControls ();
+
 		//set a new type for the all the ball spawners
 		GameObject[] spawners = GameObject.FindGameObjectsWithTag ("Spawner");
 
@@ -106,6 +108,8 @@ public class CharacterSelection : MonoBehaviour {
 
 			coloredImagesPlayer2[j].color = player2Color;
 		}
+
+		GameController.instance.HideControls ();
 
 	}
 

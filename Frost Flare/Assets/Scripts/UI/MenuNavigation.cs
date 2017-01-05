@@ -26,6 +26,7 @@ public class MenuNavigation : MonoBehaviour {
 
 	public void GoToScreen (string screenName) {
 
+		GameController.instance.HideControls ();
 		PlayersAreNotReady ();
 		OpenMenu ();
 

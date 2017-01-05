@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class BallSpawner : MonoBehaviour {
 
+	public static int initializedSpawners = 0;
+
 	//the amount of time it takes to make a max sized ball
 	public const float MAX_HOLD_TIME = 0.5f;
 
@@ -99,6 +101,11 @@ public class BallSpawner : MonoBehaviour {
 
 		//calculate the direction modifier & player number
 		directionModifier = - Mathf.Sign(spawnPosition.y);
+
+		initializedSpawners++;
+		if (initializedSpawners == 6) {
+			transform.root.gameObject.SetActive (false);
+		}
 
 	}
 
@@ -213,6 +220,7 @@ public class BallSpawner : MonoBehaviour {
 			Destroy (spawnPreview.gameObject);
 		
 		CreateSpawnPreview ();
+		spawnPreview.transform.parent = this.transform.root;
 
 		GetComponent<Image> ().sprite = Resources.Load <Sprite> ("Buttons/" + type + " Button");
 

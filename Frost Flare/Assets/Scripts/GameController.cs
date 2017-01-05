@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
 	public MenuNavigation menuNav;
 	public ScoreManager score;
 	public CharacterSelection characterSelection;
+	public GameObject controls;
 
 	void Awake () {
 
@@ -38,7 +39,6 @@ public class GameController : MonoBehaviour {
 		//Adding this so that we can do a little
 		//Animation before starting the game
 		Invoke ("RestartGame", 1f);
-
 	}
 
 	public void EndGame () {
@@ -59,6 +59,8 @@ public class GameController : MonoBehaviour {
 		menuNav.CloseMenu ();
 		menuNav.CloseAll (menuNav.popUpScreens);
 		state = PLAYING;
+
+		GameController.instance.ShowControls ();
 		
 	}
 
@@ -69,6 +71,18 @@ public class GameController : MonoBehaviour {
 		for (int i = 0; i < balls.Length; i++) {
 			Destroy (balls[i]);
 		}
+
+	}
+
+	public void ShowControls () {
+
+		controls.SetActive (true);
+
+	}
+
+	public void HideControls () {
+
+		controls.SetActive (false);
 
 	}
 		
