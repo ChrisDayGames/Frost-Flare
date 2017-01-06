@@ -35,6 +35,9 @@ public class Ball : MonoBehaviour {
 	//A reference to the rotator on the ball
 	public Rotator rotator;
 
+    //A reference to the light on the ball
+    public GameObject light;
+
 	//this will be a percentage that will ultimately control the size of the ball
 	//and determine whether or not it should be destroyed
 	[HideInInspector]
@@ -53,7 +56,16 @@ public class Ball : MonoBehaviour {
 
 	//the y value of the end zone
 	private float goal;
-	
+
+    //ball animator
+    private Animator anim;
+
+    void Start() {
+
+        anim = GetComponentInChildren<Animator>();
+
+    }
+
 	// Update is called once per frame
 	void Update () {
 
@@ -106,6 +118,9 @@ public class Ball : MonoBehaviour {
 
 		//Set the correct scale 
 		transform.localScale = Vector3.one * size;
+
+        //Set the ball light's correct scale
+        light.transform.localScale = Vector3.one;
 
 	}
 
@@ -246,6 +261,7 @@ public class Ball : MonoBehaviour {
 		CameraShake2D.instance.ShakeCamera (0.3f, 2f, 1f);
 		GameController.instance.EndGame ();
 		Destroy (gameObject);
+
 	}
 
     void MediumScreenShake() {
@@ -287,7 +303,9 @@ public class Ball : MonoBehaviour {
 
             MediumScreenShake();
             Invoke("BigScreenShake", 0.5f);
-			
+
+            anim.enabled = true;
+
 		}
 			
 	}

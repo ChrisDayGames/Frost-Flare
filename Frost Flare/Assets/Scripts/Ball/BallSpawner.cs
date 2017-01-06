@@ -13,8 +13,11 @@ public class BallSpawner : MonoBehaviour {
 	//an int for changing currently selected character
 	public int playerNumber;
 
-    //The emblem on top of each button
+    //emblem on each button
     public Image buttonEmblem;
+
+    //player light button animator
+    public Animator playerLight;
 
 	public string choice {get {return type;} set {type = value;}}
 
@@ -212,7 +215,15 @@ public class BallSpawner : MonoBehaviour {
 		//layer masks are complicated for some reason haha
 		b.gameObject.layer =  (int) Mathf.Log(ownLayer.value, 2);
 
-	}
+        AnimateSpawnLight();
+
+    }
+
+    public void AnimateSpawnLight() {
+
+        playerLight.SetTrigger("Flash");
+
+    }
 
 	public void LoadNewBall () {
 
