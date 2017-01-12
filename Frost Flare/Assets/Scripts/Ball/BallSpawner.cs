@@ -113,7 +113,7 @@ public class BallSpawner : MonoBehaviour {
 	}
 
 	void CreateSpawnPreview () {
-		spawnPreview = Instantiate <Rotator> (Resources.Load <Rotator> (type + "Preview"));
+		spawnPreview = Instantiate <Rotator> (Resources.Load <Rotator> ("Balls/" + type + "Preview"));
 		spawnPreview.transform.position = spawnPosition;
 	}
 
@@ -134,7 +134,7 @@ public class BallSpawner : MonoBehaviour {
 		spawnPreview.transform.localScale = Vector3.one * size;
 
 		//check if the ball should be displayed
-		if (ShouldDisplaySpawnPreview ((size/2)*1.05f)) {
+		if (ShouldDisplaySpawnPreview ((1/2)*1.05f)) {
 			spawnPreview.gameObject.SetActive (true);
 			spawnPreview.rotationSpeed = GetSpawnPreviewRotation () * directionModifier;
 
@@ -188,7 +188,7 @@ public class BallSpawner : MonoBehaviour {
 		if (GameController.state != GameController.PLAYING) return;
 
 		//create an instance of the ball prefab
-		Ball b = Instantiate<Ball> (Resources.Load<Ball>(type));
+		Ball b = Instantiate<Ball> (Resources.Load<Ball>("Balls/" + type));
 
 		//give the ball the correct values
 		b.transform.position = spawnPosition;
