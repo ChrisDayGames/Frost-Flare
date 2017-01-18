@@ -38,6 +38,9 @@ public class Ball : MonoBehaviour {
     //A reference to the light on the ball
     public GameObject light;
 
+    //A reference to the game over effect of the ball
+    public GameObject gameOverEffect;
+
 	//this will be a percentage that will ultimately control the size of the ball
 	//and determine whether or not it should be destroyed
 	[HideInInspector]
@@ -272,6 +275,10 @@ public class Ball : MonoBehaviour {
         CameraShake2D.instance.ShakeCamera(0.5f, 0.3f, 1f);
     }
 
+    void GameOverEffect() {
+        GameObject effect = Instantiate(gameOverEffect, Vector3.zero, Quaternion.identity) as GameObject;
+    }
+
 	public void OnTriggerEnter (Collider other) {
 
 		if (other.gameObject.CompareTag ("Ball")) {
@@ -300,6 +307,7 @@ public class Ball : MonoBehaviour {
 			DestroyAllBallsExceptThis ();
 			GameController.state = GameController.OVER;
 			Invoke ("WinGame", 1);
+            Invoke("GameOverEffect", 1);
 
             MediumScreenShake();
             Invoke("BigScreenShake", 0.5f);

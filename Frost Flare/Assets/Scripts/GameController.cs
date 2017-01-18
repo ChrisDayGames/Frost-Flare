@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour {
 		//Adding this so that we can do a little
 		//Animation before starting the game
 		Invoke ("RestartGame", 1f);
+
 	}
 
 	public void EndGame () {
@@ -73,6 +74,14 @@ public class GameController : MonoBehaviour {
 		}
 
 	}
+
+    public void ClearGameOverEffect() {
+
+        GameObject currentGameOverEffect = GameObject.FindGameObjectWithTag("GameOverEffect");
+
+        Destroy(currentGameOverEffect);
+
+    }
 
 	public void ShowControls () {
 
