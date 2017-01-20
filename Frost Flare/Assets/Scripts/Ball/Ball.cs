@@ -276,7 +276,7 @@ public class Ball : MonoBehaviour {
     }
 
     void GameOverEffect() {
-        GameObject effect = Instantiate(gameOverEffect, Vector3.zero, Quaternion.identity) as GameObject;
+        GameObject effect = Instantiate(gameOverEffect, new Vector3(0, 0, -10), Quaternion.identity) as GameObject;
     }
 
 	public void OnTriggerEnter (Collider other) {
